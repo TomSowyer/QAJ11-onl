@@ -4,6 +4,7 @@ npm install typescript
 
 npx -p typescript tsc --init
 
+module
 
 npm i mocha
 
@@ -24,3 +25,17 @@ npm i jest
 npm i ts-jest
 
 npm i @types/jest 
+
+api
+npm i superagent
+npm i @types/superagent
+
+
+
+
+
+
+
+
+plug 
+npm install @faker-js/faker

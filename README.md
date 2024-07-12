@@ -24,3 +24,14 @@ npm i jest
 npm i ts-jest
 
 npm i @types/jest 
+
+
+
+
+
+
+
+
+plug
+
+npm install @faker-js/faker

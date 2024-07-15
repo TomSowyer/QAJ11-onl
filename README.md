@@ -25,7 +25,11 @@ npm i ts-jest
 
 npm i @types/jest 
 
-
+selenium
+npm i selenium-webdriver
+npm i @types/selenium-webdriver
+npm i @types/node
+npm i chromedriver
 
 
 

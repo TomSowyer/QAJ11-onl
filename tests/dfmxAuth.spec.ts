@@ -2,9 +2,11 @@ import superagent from "superagent";
 import { devUrl } from "../const/consts";
 import { faker } from "@faker-js/faker";
 
-let accessToken: string;
+
 
 describe('Request code', () => {
+    let accessToken: string;
+
     it('Dictionary check', async () => {
         let requestCode: any;
         try {
@@ -68,13 +70,14 @@ describe('Request code', () => {
         try {
             requestCode = await superagent
                 .patch(`${devUrl}/api/v1/users/settings`)
-                .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQUNDRVNTX1RPS0VOIiwic3ViIjoiOWRhNDdjOWYtMjI0OC00M2EzLTk2YmItMGZkMzZkMzVkYzRhIiwiaXNLeWNQYXNzZWQiOnRydWUsImlhdCI6MTcyMDcwMzc0OSwiZXhwIjoxNzIzMjk1NzQ5LCJhdWQiOiJjZi1ndy1iYWNrZW5kLWVrcy5kZm14LmRldiJ9.m0FwPSK9k6hpKst4jTBmn90yeVPsDtrJ6i62UBgSGJ8')
+                .set('Authorization', `Bearer ${accessToken}`)
                 .set('Content-Type', 'application/json')
                 //.set('Host','cf-gw-backend-eks-reap.dfmx.dev')
                 .send({
                     "languageId": 2
                 });
             console.log(requestCode.body)
+            console.log(accessToken);
         }
         catch (err: any) {
             console.log(err.message);

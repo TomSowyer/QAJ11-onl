@@ -4,8 +4,7 @@
   "types":[
     "@types/mocha",
     "@types/node",
-    "@types/jest",
-    "@types/superagent"
+    "@types/jest"
   ],
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */

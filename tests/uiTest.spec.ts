@@ -1,34 +1,56 @@
-import { Builder, By, WebDriver } from "selenium-webdriver"
+import { Builder, By, Key, until, WebDriver } from "selenium-webdriver"
+import { myDevSeed } from "../const/consts";
+import { time } from "console";
 
-describe("Quinta tests", () => {
+jest.useRealTimers();
+
+describe("Console tests", () => {
     let driver: WebDriver;
     beforeAll(async () => {
-        driver = await new Builder().forBrowser('chrome').build()
+        driver = await new Builder().forBrowser('chrome').build();
         await driver.manage().window().maximize();
-        await driver.get("https://devdashboard.quinta.pro")
-        await driver.manage().setTimeouts({implicit:2000})
+        await driver.get("https://dev.xficonsole.com/");
+        await driver.manage().setTimeouts({ implicit: 20000 });
     });
+    afterAll(async () => {
+        await driver.quit();
+    }, 20000);
 
-    // afterAll(async()=>{
-    //     await driver.quit();
-    // })
-    it('Open auth', async() => {
-        
+    test('Open auth', async () => {
+
         let passcode = await driver.findElement(By.xpath('//*[@id="input"]'));
-        passcode.click();
-        passcode.sendKeys('Gw1pqh5yxQ');
-        await driver.findElement(By.xpath('//*[@id="__next"]/div/div[3]/div/div[2]/button')).click()
-    });
-    it('Go auth', async() => {
-        
-        let email = await driver.findElement(By.xpath('//*[@id="email"]'));
-        let password = await driver.findElement(By.xpath('//*[@id="password"]'));
+        let nextButton = await driver.findElement(By.xpath('//*[@id="__next"]//button'));
 
-        email.click()
-        email.sendKeys('admin@proto.com')
-        password.click()
-        password.sendKeys('23riouhjfnoweuh4go9iuh4engouil')
-        await driver.findElement(By.xpath('//*[@id="signInBlock"]/div[2]/button')).click()
+        driver.wait(until.elementIsVisible(passcode), 10000);
+        await passcode.click();
+        await passcode.sendKeys('Gw1pqh5yxQ');
+        await nextButton.click();
+        
+        console.log('Успешно ввел код')
+    },20000);
+    test('Login with seed', async () => {
+
+        let loginWithSeed = await driver.findElement(By.xpath("//button[.//div[text()='Log in with a seed phrase']]"));
+
+        await driver.wait(until.elementIsVisible(loginWithSeed), 10000);
+        await loginWithSeed.click();
+
+        console.log('Успешно перешел к вводу сида')
     });
-    
+    test('Enter seed', async () => {
+        let mnemonic = await driver.findElement(By.xpath('//*[@id="mnemonic"]'));
+        let nextButton = await driver.findElement(By.xpath("//button[.//div[text()='Enter']]"));
+
+        await mnemonic.sendKeys(myDevSeed);
+        await nextButton.click();
+        console.log('Успешно вошел')
+    });
+    test('Main page', async () => {
+        let header = await driver.findElement(By.xpath('//*[@id="__next"]/div/div[2]/div/div/header'));
+
+        let headerName = await header.getAttribute("class");
+        expect(headerName).toBe("css-1mfxri2");
+        console.log('Элемент совпадает')
+    },20000);
+
 })

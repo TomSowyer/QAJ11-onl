@@ -1,12 +1,12 @@
-import { loginPage } from "../pages/loginPage"
+import { mainPage } from "../pages/loginPage"
 
 describe.only("Home Page test", () => {
     afterAll(async()=>{
-        await loginPage.closePage()
+        await mainPage.closePage()
     },20000)
     test("Check title text", async () => {
-        await loginPage.viewPage();
-        const titleText = await loginPage.getTitleText();
+        await mainPage.viewPage();
+        const titleText = await mainPagePage.getTitleText();
         console.log(titleText);
         expect(titleText).toContain('TypeScript is JavaScript with syntax for types.')
     })

@@ -1,19 +1,18 @@
 import { By, WebDriver } from "selenium-webdriver";
 import { BasePage } from "./basePage";
-import { Driver } from "selenium-webdriver/chrome";
 import { driver } from "../driver";
-import { baseUrl } from "../const/consts";
+import { baseUrl, devPass } from "../const/consts";
 
-export class LoginPage extends BasePage{
+export class MainPage extends BasePage{
     //private readonly url:string
     constructor(driver:WebDriver){
         super(driver)
         this.url = baseUrl
     }
-    async getTitleText():Promise<string>{
-        const titleElement = await this.driver.findElement(By.xpath("//div[@class='container']//h1"))
-        return await titleElement.getText()
+    async getTitleText(){
+        const getTitleText = await this.driver.findElement(By.xpath('//*[@id="__next"]//header/div[1]/p'))
+        return await getTitleText.getText()
     }
 }
 
-export const loginPage = new LoginPage(driver)
+export const mainPage = new MainPage(driver)

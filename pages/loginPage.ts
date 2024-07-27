@@ -10,9 +10,9 @@ export class LoginPage extends BasePage{
         super(driver)
         this.url = baseUrl
     }
-    async getTitleText():Promise<string>{
-        const titleElement = await this.driver.findElement(By.xpath("//div[@class='container']//h1"))
-        return await titleElement.getText()
+    async getTitleText(){
+        const getTitleText = await this.driver.findElement(By.xpath('//*[@id="__next"]//header/div[1]/p'))
+        return await getTitleText.getText()
     }
 }
 

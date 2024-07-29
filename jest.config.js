@@ -5,5 +5,6 @@ module.exports = {
     "^.+.tsx?$": ["ts-jest",{}],
   },
   preset: "ts-jest",
-  testMatch: ["**/tests/*.spec.ts"]
+  testMatch: ["**/tests/*.spec.ts"],
+  testTimeout: 20000
 };

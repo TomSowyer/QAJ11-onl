@@ -31,7 +31,8 @@ npm i @types/selenium-webdriver
 npm i @types/node
 npm i chromedriver
 
-
+playwright
+npm init playwright@latest
 
 
 

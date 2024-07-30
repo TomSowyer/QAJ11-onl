@@ -1,4 +1,4 @@
-import { loginPage } from "../pages/loginPage"
+import { loginPage } from "../playwright/src/pages/startPage"
 
 describe.only("Home Page test", () => {
     afterAll(async()=>{

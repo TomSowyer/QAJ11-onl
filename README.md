@@ -32,8 +32,10 @@ npm i @types/node
 npm i chromedriver
 
 
-
-
+cypress/n
+npm install --save-dev
+npm install cypress -D
+npx -p typescript tsc --init
 
 
 plug

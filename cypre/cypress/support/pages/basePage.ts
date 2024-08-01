@@ -1,6 +1,12 @@
+import { NavigationBar } from "../elements/navigationBar"
+
 export class BasePage{
     protected url!:string
-    constructor(){}
+
+    public navigationBar:NavigationBar
+    constructor(){
+        this.navigationBar = new NavigationBar
+    }
 
     public visitPage(){
         cy.visit(this.url)
@@ -10,7 +16,7 @@ export class BasePage{
         return cy.title()
     }
 
-    public getTitleText(){
-        return this.getTitleText().shoul
+    public waitForTitleText(text:string){
+        return this.getTitle().should("include",text)
     }
 }
